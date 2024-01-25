@@ -19,7 +19,7 @@ class User(BaseModel, UserMixin):
     email = db.Column(db.String(255), unique=True)
     username = db.Column(db.String(255), unique=True, nullable=True)
     password = db.Column(db.String(255), nullable=False)
-    active = db.Column(db.Boolean())
+    active = db.Column(db.Boolean(), default=True)
     fs_uniquifier = db.Column(db.String(64), unique=True, nullable=False) # crucial for flask-sequrity 
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))
