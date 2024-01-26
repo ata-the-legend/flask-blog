@@ -23,3 +23,7 @@ class User(BaseModel, UserMixin):
     fs_uniquifier = db.Column(db.String(64), unique=True, nullable=False) # crucial for flask-sequrity 
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))
+    posts = relationship('Post', backref='auther', lazy=True)
+    
+    def __repr__(self):
+	    return f'{self.__class__.__name__}({self.id}, {self.username})'

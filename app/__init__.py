@@ -12,6 +12,7 @@ def register_blueprints(app):
 def add_view_to_admin_panel(admin):
     admin.add_view(MyModelView(User, db.session))
     admin.add_view(MyModelView(Role, db.session))
+    admin.add_view(MyModelView(Post, db.session))
 
 app = Flask(__name__)
 register_blueprints(app)
@@ -20,6 +21,7 @@ app.config.from_object('settings.DevConfig')
 db.init_app(app)
 
 from app.users.models import User, Role # to privent circular_imports for migrate use
+from app.posts.models import Post
 migrate.init_app(app, db, render_as_batch=True)
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
