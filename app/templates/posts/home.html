@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>{{name}}</p>
+{% if  name %}
+<h3>Hello {{name}}</h3></hr>
+<a href="{{ url_for('posts.create') }}" class="btn btn-secondary">Create a new post</a>
+{% else %}
+<h3>Please Login ...</h3>
+{% endif %}
+
+<div class="card">
+    {% for post in posts %}
+        <a href="{{ url_for('posts.detail', post_id=post.id) }}"
+         class="card-body">{{ post.title }}   ......   {{post.auther.username}}</a>
+    {% endfor %}
+</div>
+
 {% endblock content %}
