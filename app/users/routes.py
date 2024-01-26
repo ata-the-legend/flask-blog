@@ -12,9 +12,9 @@ def register():
     form = RegisterationForm()
     if form.validate_on_submit():
         user_email = security.datastore.find_user(email=form.email.data)
-        user_email = security.datastore.find_user(username=form.username.data)
+        user_username = security.datastore.find_user(username=form.username.data)
         # raise error in forms
-        if not (user_email and user_email):
+        if not (user_email and user_username):
             security.datastore.create_user(
                 email=form.email.data,
                 username=form.username.data,

@@ -4,6 +4,7 @@ from flask_security import SQLAlchemyUserDatastore
 from app.extensions import db, migrate, security, admin, MyAdminIndexView, MyModelView
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
+from app.users import manage as users_manage #to commands be registerd
 
 def register_blueprints(app):
     app.register_blueprint(users_blueprint)
