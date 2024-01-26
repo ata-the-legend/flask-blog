@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_security import SQLAlchemyUserDatastore
 
-from app.extensions import db, migrate, security, admin, MyAdminIndexView, MyModelView
+from app.extensions import db, migrate, security, admin, MyAdminIndexView, MyModelView, PostModelView, UserModelView
 from app.users.routes import blueprint as users_blueprint
 from app.posts.routes import blueprint as posts_blueprint
 from app.users import manage as users_manage #to commands be registerd
@@ -11,9 +11,9 @@ def register_blueprints(app):
     app.register_blueprint(posts_blueprint)
 
 def add_view_to_admin_panel(admin):
-    admin.add_view(MyModelView(User, db.session))
+    admin.add_view(UserModelView(User, db.session))
     admin.add_view(MyModelView(Role, db.session))
-    admin.add_view(MyModelView(Post, db.session))
+    admin.add_view(PostModelView(Post, db.session))
 
 app = Flask(__name__)
 register_blueprints(app)

@@ -14,6 +14,9 @@ class Role(BaseModel, RoleMixin):
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
 
+    def __str__(self):
+        return self.name
+
 class User(BaseModel, UserMixin):
     __tablename__ = 'user'
     email = db.Column(db.String(255), unique=True)
